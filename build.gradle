@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'dev.yuafox'
+version '1.0-SNAPSHOT'
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from {
+        configurations.runtimeClasspath.collect {
+            if (!it.name.equalsIgnoreCase("YuaBot-1.0-SNAPSHOT.jar")) {
+                it.isDirectory() ? it : zipTree(it)
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.clojars.org'
+        name 'Clojars'
+    }
+}
+
+dependencies {
+    implementation files('../YuaBot/build/libs/YuaBot-1.0-SNAPSHOT.jar')
+    implementation('io.github.redouane59.twitter:twittered:2.16')
+}

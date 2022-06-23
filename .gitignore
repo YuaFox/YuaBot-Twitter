@@ -1,0 +1,13 @@
+# Idea
+.idea
+*.iml
+
+# Gradle
+.gradle
+build
+local.properties
+
+# Project
+logs
+plugins
+data
