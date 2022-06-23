@@ -8,6 +8,6 @@ build
 local.properties
 
 # Project
-logs
-plugins
-data
+/logs
+/plugins
+/data
